@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>接金币小游戏</title>
+    <style>
+        body,ul,p{ margin:0; padding:0; }
+        body{background: #cee9f2;}
+        li{ list-style:none;}
+        #box{ width:1263px; height:700px; background: url(../img/games_pickUpGold_img/box_bj.jpg) no-repeat; position:relative; margin: 0 auto; border:2px solid #000;}
+        span{ width:118px; height:166px; background:url(../img/games_pickUpGold_img/right.gif) no-repeat; position:absolute; left:0; top:435px;}
+        .active{ background:url(../img/games_pickUpGold_img/left.gif) no-repeat;}
+        #btop{ height:40px; background:none; padding: 0 20px; position:relative; left:0; top:-20px; display:none;}
+        #btop div{ width:40px; height:40px; position: absolute;}
+        .coin{ background:url(../img/games_pickUpGold_img/coin-8.gif) no-repeat;}
+        .addTime{ background:url(../img/games_pickUpGold_img/time.gif) no-repeat;}
+        .addcoin{ background:url(../img/games_pickUpGold_img/add.gif) no-repeat;}
+        .zhadan{ background:url(../img/games_pickUpGold_img/bomb.gif) no-repeat;}
+        #brand{ width:182px; height:68px; background:url(../img/games_pickUpGold_img/timebj.gif) no-repeat; padding: 175px 100px 68px 110px; margin-top:240px; display:none;}
+        #time,p{ height:34px; line-height:34px; display:block; font-size:20px; font-weight:bold; color:#FF0099;}
+
+        #mask{ width:100%; height:100%; background:#000; opacity:0.8; position:absolute; z-index:5;}
+        #begin{ width:719px; height:545px; background:url(../img/games_pickUpGold_img/begin.gif) no-repeat; position:absolute; z-index:6; }
+        #login{ width: 123px; height:37px; position:absolute; left: 208px; top:422px; background:url(../img/games_pickUpGold_img/play.gif) no-repeat;}
+        #more{ width: 123px; height:37px; position:absolute; left:358px;top:422px; background:url(../img/games_pickUpGold_img/moreGames.gif) no-repeat;}
+        #over{ width:450px; height:252px; background:url(../img/games_pickUpGold_img/over.gif) no-repeat; z-index:6; position:absolute;display:none;}
+        #overScore{ width:112px; height:34px; line-height:34px; font-size:30px; text-align:center; font-weight:bold; color:#5e05f5; position:absolute; left:170px; top:122px;}
+        #onemore{ width: 123px; height:37px; position:absolute; left:110px; top:207px; background:url(../img/games_pickUpGold_img/onemore.gif) no-repeat;}
+        .more{ width: 123px; height:37px; position:absolute; left:236px; top:207px; background:url(../img/games_pickUpGold_img/more1.gif) no-repeat;}
+        #win{ width:300px; height:34px; line-height:34px; font-size:26px; text-align:center; font-weight:bold; color:#FF0099; position:absolute; left:100px; top:156px;}
+        #btop .aScore{ width:50px; height:24px; background:url(../img/games_pickUpGold_img/score.gif) no-repeat; position: absolute; left:0; top:0;}
+        body,td,th {
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+<div id="box">
+    <div id="mask"></div>
+    <div id="begin">
+        <a href="javascript:;" id="login"></a>
+        <a href="javascript:;" id="more"></a>
+    </div>
+    <div id="over">
+        <em id="overScore"></em>
+        <div id="win"></div>
+        <a href="javascript:;" id="onemore"></a>
+        <a href="javascript:;" class="more"></a>
+    </div>
+    <div id="btop"></div>
+    <span id="btn"></span>
+    <div id="brand">
+        <em id="time">剩余时间:00分00秒</em>
+        <p><em>得分:</em><em id="score">0</em></p>
+    </div>
+</div>
+</body>
+</html>
+<script>
+
+
+    var arr = ['coin','addTime','addcoin','zhadan','zhadan','coin','coin','coin','coin','coin','coin','coin','coin','coin','coin','coin','coin','coin','coin','coin','coin','coin','coin','coin','coin','coin','coin','coin','coin','coin','coin','coin','coin','coin','coin','coin','coin','coin','coin','coin','coin','coin'];
+    var oBtn = document.getElementsByTagName('span')[0];
+    var oDiv = document.getElementById('btop');
+    var aTime = document.getElementById('time');
+    var aScore = document.getElementById('score');
+    var arr1 = [];
+    var v = parseInt(aScore.innerHTML);
+    var s = 0;
+    var timer1 = null;
+    var timer2 = null;
+    var timerT = null;
+    var oDate = '';
+    var iS = 0;
+    var aDivL = null;
+    var aDivT = null;
+
+    var oBox = document.getElementById('box');
+    var aBegin = document.getElementById('begin');
+    var aMask = document.getElementById('mask');
+    var aLogin = document.getElementById('login');
+    var aBrand = document.getElementById('brand');
+    //var aMore = document.getElementById('more');
+
+    var aLeft = (oBox.offsetWidth - aBegin.offsetWidth)/2;
+    var aTop = (oBox.offsetHeight - aBegin.offsetHeight)/2;
+    aBegin.style.left = aLeft + 'px';
+    aBegin.style.top = aTop + 'px';
+
+    aLogin.onclick = function(){
+        oDate = new Date();
+        iS = oDate.getTime();
+        aMask.style.display = 'none';
+        aBegin.style.display = 'none';
+        oDiv.style.display = 'block';
+        aBrand.style.display = 'block';
+        fn2();
+        fn1();
+        fn3();
+    }
+
+
+    function fn2(){
+        clearInterval(timerT);
+        timerT = setInterval(showTime,1000);
+        function showTime(){
+
+            var newDate = 120 * 1000 + iS;
+            var nowDate = new Date();
+            var time = newDate - nowDate.getTime();
+            var m = Math.floor(time % 3600000 / 60000);
+            s = Math.floor(time / 1000 % 60);
+            if(m < 0 && s < 0){
+                m = s =0;
+                for(var i=0; i<arr1.length; i++){   // 隐藏所有的oDiv
+                    arr1[i].style.display = 'none';
+                }
+                arr1 = [];
+                clearInterval(timerT);
+                clearInterval(timer1);
+                clearInterval(timer2);
+                aMask.style.display = 'block';
+                aOver.style.display = 'block';
+                aOverScore.innerHTML = v;
+                if(v >= 100){
+                    aWin.innerHTML = '恭喜你过关了！！';
+                }else{
+                    aWin.innerHTML = '还差一点，要加油哦！！';
+                }
+                over();
+            }
+            aTime.innerHTML = "剩余时间：" + m + "分" + s + "秒";
+        }
+    }
+
+    function fn1(){
+        clearInterval(timer1);
+        timer1= setInterval(function(){
+            var aDiv = document.createElement('div');
+
+            oDiv.appendChild(aDiv);
+
+            var n = Math.round(Math.random()*1200);
+            aDiv.style.left = n + 'px';
+            var m = Math.floor(Math.random() * 40 + 1);
+            aDiv.className= arr[m];
+            arr1.push(aDiv);
+
+            timer2 = setInterval(function(){
+                var iTop = aDiv.offsetTop + 10;
+                if(iTop == 650){
+                    aDiv.style.display = 'none';
+                    aDiv.parentNode.removeChild(aDiv); // 删除自己
+                }
+                var L = oBtn.offsetLeft;
+                var T = oBtn.offsetTop;
+                var R = oBtn.offsetLeft + oBtn.offsetWidth;
+                var B = oBtn.offsetTop + oBtn.offsetHeight-10;
+
+                var L1 = aDiv.offsetLeft;
+                var T1 = aDiv.offsetTop;
+                var R1 = aDiv.offsetLeft + aDiv.offsetWidth;
+                if(R1 < L || T1 < T || T1 >B  || L1 > R){  // 判断是否发生碰撞事件
+                    aDiv.style.top = iTop +'px';
+                }else{
+                    aDivL = aDiv.offsetLeft;
+                    aDivT = aDiv.offsetTop;
+
+
+                    aDiv.style.display = 'none';
+                    aDiv.parentNode.removeChild(aDiv);
+
+                    if(aDiv.className == 'coin'){  // 判断所碰撞的对象的className
+                        v+=100;
+                        createScore();
+                    }else if(aDiv.className == 'addTime'){
+                        iS +=5000;
+                    }else if(aDiv.className == 'addcoin'){
+                        v += 300;
+                        createScore();
+                        setTimeout(createScore,50);
+                        setTimeout(createScore,100);
+                    }else{
+                        for(var i=0; i<arr1.length; i++){   // 隐藏所有的oDiv
+                            arr1[i].style.display = 'none';
+                        }
+                        clearInterval(timerT);
+                        clearInterval(timer1);
+                        clearInterval(timer2);
+                        aMask.style.display = 'block';
+                        aOver.style.display = 'block';
+                        aOverScore.innerHTML = v;
+                        if(v >= 10000){
+                            aWin.innerHTML = '恭喜你过关了！！';
+                        }else{
+                            aWin.innerHTML = '还差一点，要加油哦！！';
+                        }
+
+                        over();
+                    }
+                    aScore.innerHTML = v;
+                }
+            },300)
+        },1000);
+    }
+
+    function fn3(){
+        var timer = null;
+        var oBtnT = oBtn.offsetTop;
+        document.onkeydown = function (ev){
+            var ev = ev || event;
+
+            if(ev.keyCode == 38){
+                startMove(oBtn,{top:oBtnT-200},function(){
+                    startMove(oBtn,{top:oBtnT});
+                });
+            }
+            clearInterval(timer);
+            timer = setInterval(function(){
+                switch(ev.keyCode){
+                    case 37:
+                        oBtn.className = 'active';
+                        if(oBtn.offsetLeft <= 0){
+                            oBtn.style.left = 0 + 'px';
+                        }
+                        else{
+                            oBtn.style.left = oBtn.offsetLeft - 5 + 'px';
+                        }
+                        break;
+                    case 39:
+                        oBtn.className = '';
+                        if(oBtn.offsetLeft > 1145){
+                            oBtn.style.left = 1146 + 'px';
+                        }else{
+                            oBtn.style.left = oBtn.offsetLeft + 5 + 'px';
+                        }
+                        break;
+                }
+            },10);
+            return false;
+        }
+        document.onkeyup = function(){
+            clearInterval(timer);
+        }
+    }
+    var aOver = document.getElementById('over');
+    var aOnemore = document.getElementById('onemore');
+    var aOverScore = document.getElementById('overScore');
+    var aWin = document.getElementById('win');
+    function over(){
+
+        aOver.style.left = (oBox.offsetWidth - aOver.offsetWidth)/2 + 'px';
+        aOver.style.top = (oBox.offsetHeight - aOver.offsetHeight)/2 + 'px';
+
+        aOnemore.onclick = function (){
+
+            oDate = new Date();
+            iS = oDate.getTime();
+            aMask.style.display = 'none';
+            aOver.style.display = 'none';
+            oDiv.style.display = 'block';
+            aBrand.style.display = 'block';
+            v = 0;
+            aScore.innerHTML = v;
+            oBtn.className = '';
+            oBtn.style.left =0;
+
+            fn2();
+            fn1();
+            fn3();
+        }
+
+    }
+    var timerScore = null;
+    function createScore(){
+        var aScore = document.createElement('div');
+        aScore.className = 'aScore';
+        oDiv.appendChild(aScore);
+
+        aScore.style.left = aDivL + 'px';
+        aScore.style.top = aDivT+ 'px';
+        //alert(1);
+        //clearInterval(timerScore);
+        timerScore = setInterval(function(){
+            var t = 5;
+            if(aScore.offsetTop <= aDivT-100){
+                aScore.style.display = 'none';
+                //aScore.parentNode.removeChild(aScore);
+                timerScore = null;
+            }else{
+
+                aScore.style.top = aScore.offsetTop - t + 'px';
+            }
+        },30)
+    }
+
+
+    /*function toJump(){
+     var oBtnT = oBtn.offsetTop;
+     if(ev.keyCode == 38){
+     startMove(oBtn,{top:oBtnT-200},function(){
+     startMove(oBtn,{top:oBtnT});
+     });
+     }
+
+     }*/
+    function startMove(obj,json,fn){
+        clearInterval(obj.timer);
+        obj.timer = setInterval(function(){
+
+            var bBtn = true;
+
+            for(var attr in json){
+
+                var iCur = 0;
+                if(attr == 'opacity'){
+                    iCur = Math.round(getStyle(obj,attr)*100);
+                }
+                else{
+                    iCur = parseInt(getStyle(obj,attr));
+                }
+
+                var iSpeed = (json[attr] - iCur)/8;
+                iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+
+                if(iCur != json[attr]){
+
+                    bBtn = false;
+
+                }
+
+                if(attr == 'opacity'){
+                    obj.style.filter = 'alpha(opacity='+(iCur+iSpeed)+')';
+                    obj.style.opacity = (iCur + iSpeed)/100;
+                }
+                else{
+                    obj.style[attr] = iCur + iSpeed + 'px';
+                }
+
+
+            }
+
+            if(bBtn){
+                clearInterval(obj.timer);
+                if(fn){
+                    fn.call(obj);
+                }
+            }
+
+
+        },30);
+    }
+
+    function getStyle(obj,attr){
+        if(obj.currentStyle){
+            return obj.currentStyle[attr];
+        }
+        else{
+            return getComputedStyle(obj,false)[attr];
+        }
+    }
+
+</script>

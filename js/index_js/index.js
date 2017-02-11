@@ -67,24 +67,17 @@ window.onload = function(){
 
     }
 
-    var facebook = getByClass('facebook',document)[0];
-    var fImg = facebook.getElementsByTagName('img')[0];
-    var twitter = getByClass('twitter',document)[0];
-    var tImg = twitter.getElementsByTagName('img')[0];
+    var github = getByClass('github',document)[0];
+    var fImg = github.getElementsByTagName('img')[0];
+
 
     fImg.onmouseover = function(){  // Facebook  icon  onmouseover事件
-        this.src = 'img/index_img/btn_facebook_yellow.png';
+        this.src = 'img/index_img/btn_github_yellow.png';
     }
     fImg.onmouseout = function(){    //  Facebook  icon  onmouseout事件
-        this.src = 'img/index_img/btn_facebook.png';
+        this.src = 'img/index_img/btn_github.png';
     }
 
-    tImg.onmouseover = function(){  // Twitter  icon  onmouseover事件
-        this.src = 'img/index_img/btn_twitter_yellow.png';
-    }
-    tImg.onmouseout = function(){  //   Twitter  icon  onmouseout事件
-        this.src = 'img/index_img/btn_twitter.png';
-    }
 
     var rightbox = getByClass('rightbox',document);
     var leftIcon = getByClass('leftIcon',document);

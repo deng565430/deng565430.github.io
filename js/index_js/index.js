@@ -44,16 +44,16 @@ window.onload = function(){
 
     var T = 0;
     var timers = null;
-
+    var liA = document.querySelectorAll('.liA')
     for(var i=0;i<navLi.length;i++){
         navLi[i].index = i;
         navLi[i].onclick = function(){    //nav  Li的变化
 
             scrollMoveDown(this.index);
-            //for(var i=0; i<navLi.length;i++){
-            //liBjmove1(navLi[i]);
-            //}
-            //liBjmove(navLi[this.index]);
+            for(var i=0; i<navLi.length;i++){
+                liA[i].style.color='black';
+            }
+            liA[this.index].style.color='white';
         }
     }
 

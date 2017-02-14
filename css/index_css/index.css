@@ -109,6 +109,7 @@ p{font-size: 14px}
 #box4 .txt1{left:62.5%;}
 #box4 .txt1 .txtCon{ border-color:#000;}
 #box4 .txt1 .txtCon p{ color:#000;}
+#box4 .txt1 .icon{ top:0}
 /* end box4.css*/
 
 /* box5.css */

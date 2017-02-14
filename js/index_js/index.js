@@ -353,6 +353,7 @@ window.onload = function(){
                 startMove(txtCon[i],{left: 0});
                 startMove(icon[i],{left: 0});
             }
+
         }
         var bjCor = getByClass('bjCor',document);
         for(var i=0; i<bjCor.length-1; i++){         //  滚动条控制navLi的背景变化

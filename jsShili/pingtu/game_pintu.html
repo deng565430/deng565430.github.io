@@ -7,7 +7,7 @@
         ul{ width:804px; height:804px; margin: 100px auto; position:relative;}
         li{ width:0; height:0;float:left;margin:1px;}
     </style>
-    <script src="../js/index_js/move.js"></script>
+    <script src="../../js/index_js/move.js"></script>
     <script>
 
 
@@ -35,7 +35,7 @@
                 for(var i=0; i<oLi.length; i++){
                     oLi[i].style.width = oUl.offsetWidth/map - 2 + 'px';
                     oLi[i].style.height = oUl.offsetHeight/map - 2 + 'px';
-                    oLi[i].style.backgroundImage = 'url(../img/game_pintu_img/'+gk+'.jpg)';
+                    oLi[i].style.backgroundImage = 'url(../../img/game_pintu_img/'+gk+'.jpg)';
 
                     arr.push([oLi[i].offsetLeft,oLi[i].offsetTop]);
                     oLi[i].style.backgroundPosition = -arr[i][0] + 'px' +' -'+ arr[i][1] + 'px';

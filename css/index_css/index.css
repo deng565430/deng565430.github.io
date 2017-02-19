@@ -9,7 +9,7 @@ p{font-size: 14px}
 
 
 /* header.css */
-.navMaks{ width:100%; height:65px; background: #f8f4ff;filter:alpha(opacity=60); opacity:0.6; position:fixed; left:0; top:0; z-index:1000;}
+.navMaks{ width:100%; height:65px; background: #000;filter:alpha(opacity=60); opacity:.8; position:fixed; left:0; top:0; z-index:1000;}
 .header{ width:100%; height:65px; position:fixed; left:152px; top:0; margin-top:5px; z-index:2000;}
 #logo{ width:252px; height:65px; background: url(../../img/index_img/logo/logo_Dxiaoya.png) no-repeat; float:left;}
 .nav{ width:956px; float:left;}
@@ -19,7 +19,7 @@ p{font-size: 14px}
 #bjList li div{ position:absolute; left:0; top:0; width:110px;height:34px; overflow:hidden;}
 #bjList li div img{ width:110px; height: 34px; position:absolute; left:10px; top:34px;}
 #bjList .active img{left:0; top:0;}
-#bjList a{ position:absolute; left:10px; top:0; width:100px;height:34px; color:#000; line-height:34px; background:url(../../img/index_img/Bar_agence.png) no-repeat left 32px; text-align:center;}
+#bjList a{ position:absolute; left:10px; top:0; width:100px;height:34px; color:#fff; line-height:34px; background:url(../../img/index_img/Bar_agence.png) no-repeat left 32px; text-align:center;}
 #bjList .cor2{ background-image:url(../../img/index_img/Bar_strategie.png);}
 #bjList .cor3{ background-image:url(../../img/index_img/Bar_design.png);}
 #bjList .cor4{ background-image:url(../../img/index_img/Bar_techno.png);}
@@ -57,7 +57,7 @@ p{font-size: 14px}
 /* end public.css */
 
 /* box1.css */
-#box1{ /*background:#060606 url(../../img/index_img/logo/bg.jpg) no-repeat center top;*/ background:linear-gradient(to right, #13d0ff 0%, #2174a2 100%)}
+#box1{ /*background:#060606 url(../../img/index_img/logo/bg.jpg) no-repeat center top;*/ background:linear-gradient(to right, #6daaed 0%, #6daaed 100%)}
 #box1 .bj1{background:url(../../img/index_img/petale.png) no-repeat -60px 0;}
 #box1 .bj2{ background:url(../../img/index_img/triangles.png) no-repeat -60px 0;}
 #box1 .ziwojieshao{position: absolute;top:200px;left: 170px;height: 200px;}
@@ -73,7 +73,7 @@ p{font-size: 14px}
 /* end box1.css */
 
 /* box2.css */
-#box2{background:linear-gradient(to right, #bc66c7 0%, #d8afd6 100%)}/* top:710px; */
+#box2{background:linear-gradient(to right, #da7ce4 0%, #d8afd6 100%)}/* top:710px; */
 
 
 #box2 .infoShow li{ width:100px; height:100px; margin:15px; padding:15px; float:left; background:#d91e75; cursor:pointer;}
@@ -85,7 +85,7 @@ p{font-size: 14px}
 /* end box2.css */
 
 /* box3.css */
-#box3{ background:linear-gradient(to right,#e2da5d 0%, #c6ba0e 100%)}  /*  top:1420px; */
+#box3{ background:linear-gradient(to right, #fff2e9 0%, #e9dcd3 100%)}  /*  top:1420px; */
 
 #box3 .infoShow li{ width:100px; height:100px; margin:15px; padding:15px; float:left; background:#714880; cursor:pointer;}
 #box3 .infoShow img{ width:100px; height:100px;}

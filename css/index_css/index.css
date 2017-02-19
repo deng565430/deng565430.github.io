@@ -50,7 +50,7 @@ p{font-size: 14px}
 .box .txt1 img{ width:569px; height:333px}
 .box .txt1 .txtCon{ width:316px;padding-left:15px;margin-left: 32px;border-left: solid 1px #fff; margin-top:32px; position:relative; left:0; top:0;}
 .box .txt1 .txtCon p{ color:#fff; line-height:25px;}
-.box .txt1 .icon{ margin-top:22px; padding-left:45px; position:relative; left:0; top:200px;}
+.box .txt1 .icon{ margin-top:22px; padding-left:45px; position:relative; left:0; top:150px;}
 .box .txt1 .icon .icon1{ width:40px; height:40px; float:left; position:relative;}
 .box .txt1 .icon img{ width:30px; height:30px; position:absolute; left:0; top:0; cursor:pointer;}
 .box .txt1 .icon .after{filter:alpha(opacity=0); opacity:0;}
@@ -126,7 +126,7 @@ p{font-size: 14px}
 .nos li img{ width:150px; height:113px; position:absolute;}
 .nos .listbot{ width:800px; height:60px; overflow:hidden}
 .nos .listbot img{ width:800px; height:117px; margin-top:-40px}
-.nos .icon{ width:810px; height:40px; }
+.nos .icon{position: absolute; width:810px; height:40px; top:440px}
 .nos .icon1{ width:40px; height:40px; padding: 0 20px; position:relative; left:285px; float:left}
 .nos .icon1 img{ width:30px; height:30px; position:absolute; cursor:pointer;}
 .nos .icon1 .after{filter:alpha(opacity=0); opacity:0;}
